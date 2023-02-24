@@ -1,45 +1,72 @@
-import React from 'react';
-import { Button, Center, Stack, WrapItem, Image, Text } from '@chakra-ui/react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import {
+  Center,
+  Stack,
+  WrapItem,
+  Image,
+  Text,
+  Button,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  StackItem,
+} from "@chakra-ui/react";
+import ModalWindow from "./components/ModalWindow";
+import { images } from "./resources/utils";
+import ToggleColorMode from "./resources/ToggleColorButton";
 
 const App = () => {
-	const data = {
-		logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/1200px-Netflix_icon.svg.png',
-		full_logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png'
-	};
+  return (
+    <>
+      <ToggleColorMode />
+      <Center h="100vh" className="container">
+        <Stack align="center">
+          <WrapItem>
+            <Image id="logo" src={images.netflix_logo_classic} width={100} />
+          </WrapItem>
+          <WrapItem>
+            <Text className="message" mb={3}>
+              Welcome to Netflix
+            </Text>
+          </WrapItem>
+          <WrapItem>
+            <ModalWindow />
+          </WrapItem>
+          <WrapItem>
+            <Button
+              className="success"
+              variant="solid"
+              colorScheme="green"
+              margin={2}
+              width={100}
+              onClick={() => {
+                setMode("success");
+              }}
+            >
+              Success
+            </Button>
+            <Button
+              className="success"
+              variant="solid"
+              colorScheme="red"
+              margin={2}
+              width={100}
+            >
+              Error
+            </Button>
+          </WrapItem>
+        </Stack>
+      </Center>
+    </>
+  );
+};
 
-	return (
-		<>
-			<Center h="100vh" className="container">
-				<Stack align="center">
-					<WrapItem>
-						<Image
-							id="logo"
-							src={data.full_logo}
-							width={100}
-							onMouseOver={() => updateLogo(data.full_logo)}
-							onMouseLeave={() => updateLogo(data.logo)}
-						/>
-					</WrapItem>
-					<WrapItem>
-						<Text className="message">Netflix Originals</Text>
-					</WrapItem>
-					<WrapItem>
-						<Button
-							id="open-link"
-							onClick={() => window.open("https://www.netflix.com/")}
-						>
-							Get Started
-						</Button>
-					</WrapItem>
-				</Stack>
-			</Center>
-		</>
-	)
-}
-
-const updateLogo = (logo) => {
-	document.getElementById('logo').src = logo;
-}
+const AlertMode = ({mode, message}) => (
+  <Alert status={mode}>
+    <AlertIcon />
+    <AlertDescription>{message}</AlertDescription>
+  </Alert>
+)
 
 export default App;
