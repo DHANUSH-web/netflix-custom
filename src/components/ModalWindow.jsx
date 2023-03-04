@@ -12,22 +12,26 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link as Hyper } from "react-router-dom";
 
 const ModalWindow = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const openNetflix = () => window.open("https://www.netflix.com/");
 
   return (
     <>
-      <Button id="open-link" onClick={onOpen} colorScheme="facebook">
-        Get Started
-      </Button>
+      <Hyper to="/home">
+        <Button
+          id="open-link"
+          colorScheme="facebook"
+          width={150}
+        >
+          Get Started
+        </Button>
+      </Hyper>
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
         <ModalContent>
-          <ModalHeader fontWeight="normal">
-            Netflix Membership
-          </ModalHeader>
+          <ModalHeader fontWeight="normal">Netflix Membership</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Text>
@@ -36,14 +40,16 @@ const ModalWindow = () => {
             </Text>
           </ModalBody>
           <ModalFooter>
-            <Button
-              className="buyButton"
-              variant="ghost"
-              colorScheme="twitter"
-              onClick={openNetflix}
-            >
-              Buy
-            </Button>
+            <Hyper to="/home">
+              <Button
+                className="buyButton"
+                variant="ghost"
+                colorScheme="twitter"
+                // onClick={openNetflix}
+              >
+                Buy
+              </Button>
+            </Hyper>
             <Button
               m={2}
               className="closeButton"

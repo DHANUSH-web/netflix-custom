@@ -13,4 +13,11 @@ const gifs = {
     netflix_intro: "https://media.tenor.com/QJNoPeq9WmUAAAAC/netflix-intro-netflix.gif"
 }
 
-export { images, icons, gifs };
+const url = {
+    netflix: 'https://www.netflix.com',
+    youtube: 'https://www.youtube.com',
+    reactjs: 'https://www.reactjs.org',
+    reactjs_beta: 'https://beta.reactjs.org'
+}
+
+export { images, icons, gifs, url };

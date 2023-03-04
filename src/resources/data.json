@@ -1,0 +1,23 @@
+{
+    "urls": {
+        "netflix": "https://www.netflix.com",
+        "youtube": "https://www.youtube.com",
+        "twitter": "https://www.twitter.com",
+        "playStore": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+        "appleStore": "https://apps.apple.com/us/app/netflix/id363590051"
+    },
+    "images": {
+        "playStore": "https://cdn-icons-png.flaticon.com/512/3128/3128279.png",
+        "appleStore": "https://cdn-icons-png.flaticon.com/512/5977/5977575.png",
+        "netflix_logo_classic": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/1200px-Netflix_icon.svg.png",
+        "netflix_logo_official": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png",
+        "netflix_logo_classic_transparent": "https://cdn-icons-png.flaticon.com/512/732/732228.png"
+    },
+    "icons": {
+        "netflix_classic": "",
+        "netflix_classic_transparent": ""
+    },
+    "gifs": {
+        "netflix_intro": "https://media.tenor.com/QJNoPeq9WmUAAAAC/netflix-intro-netflix.gif"
+    }
+}

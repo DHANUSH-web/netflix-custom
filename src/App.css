@@ -1,5 +1,4 @@
 body {
-	background-color: #000000;
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
@@ -48,4 +47,18 @@ body {
 	100% {
 		transform: scale(1);
 	}
+}
+
+.appStore, #container {
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+.appStore:hover {
+	transform: scale(1.2);
+}
+
+#container:hover {
+	transform: scale(1.2);
+	box-shadow: 0 0 25px 7px #0080ff;
 }
