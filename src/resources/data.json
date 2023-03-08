@@ -1,4 +1,10 @@
 {
+    "accounts": {
+        "username": {
+            "emailId": "dhanushhv75@gmail.com",
+            "password": "dHANUSHHV@12345"
+        }
+    },
     "urls": {
         "netflix": "https://www.netflix.com",
         "youtube": "https://www.youtube.com",
@@ -11,7 +17,8 @@
         "appleStore": "https://cdn-icons-png.flaticon.com/512/5977/5977575.png",
         "netflix_logo_classic": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/1200px-Netflix_icon.svg.png",
         "netflix_logo_official": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png",
-        "netflix_logo_classic_transparent": "https://cdn-icons-png.flaticon.com/512/732/732228.png"
+        "netflix_logo_classic_transparent": "https://cdn-icons-png.flaticon.com/512/732/732228.png",
+        "zebra_tech": "https://yt3.googleusercontent.com/ytc/AL5GRJXUvkVKVdFx-eM_dtjaBVqL8ltGTS0byUscYRpXXg=s900-c-k-c0x00ffffff-no-rj"
     },
     "icons": {
         "netflix_classic": "",

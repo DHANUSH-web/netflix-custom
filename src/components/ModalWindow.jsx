@@ -19,7 +19,7 @@ const ModalWindow = () => {
 
   return (
     <>
-      <Hyper to="/home">
+      <Hyper to="/login">
         <Button
           id="open-link"
           colorScheme="facebook"
