@@ -4,6 +4,7 @@ import ModalWindow from "./components/ModalWindow";
 import data from "./resources/data.json";
 import React from "react";
 import "./App.css";
+import firebase from "./firebase";
 
 const App = () => {
   return (

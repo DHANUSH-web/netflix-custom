@@ -1,3 +1,8 @@
+import React from "react";
+import data from "../resources/data.json";
+import { Link } from "react-router-dom";
+import "./RegisterPage.css";
+import { pullData, pushData } from "../resources/database";
 import {
   Box,
   Center,
@@ -12,16 +17,12 @@ import {
   useToast,
   Checkbox,
 } from "@chakra-ui/react";
-import data from "../resources/data.json";
-import { Link } from "react-router-dom";
 import {
   MdEmail,
   MdPhoneIphone,
   MdVisibility,
   MdVisibilityOff,
 } from "react-icons/md";
-import React from "react";
-import "./RegisterPage.css";
 
 const RegisterPage = () => {
   // toast message
@@ -53,6 +54,7 @@ const RegisterPage = () => {
   const isValidEmailId = email.endsWith(".com");
   const isValidPassword = password === confirmPassword;
   const isvalidPhoneNumber = phoneNumber.length === 10;
+  const isStrongPassword = password.length === 0 || password.length >= 14;
 
   const isAllFieldsFilled =
     isEmailFilled &&
@@ -76,7 +78,7 @@ const RegisterPage = () => {
               placeholder="Email Address"
               variant="filled"
               onChange={handleEmail}
-              focusBorderColor={isValidEmailId ? "#00c0fc": "red.300"}
+              focusBorderColor={isValidEmailId ? "#00c0fc" : "red.300"}
             />
           </InputGroup>
           <InputGroup>
@@ -95,6 +97,7 @@ const RegisterPage = () => {
               type={displayPassword ? "text" : "password"}
               placeholder="Password"
               variant="filled"
+              focusBorderColor={isStrongPassword ? "#00c0fc" : "red.300"}
               onChange={handlePassword}
             />
             <InputRightAddon
@@ -137,10 +140,21 @@ const RegisterPage = () => {
             className="button-register"
             colorScheme="twitter"
             onClick={() => {
+              let userName = email.split("@")[0];
+              pushData({
+                root: 'accounts/' + userName,
+                data: {
+                  emailId: email,
+                  password: password,
+                  phoneNumber: phoneNumber,
+                },
+              });
+
               toast({
-                status: "info",
-                title: "Message",
-                description: `Email: ${email}, Password: ${password}`,
+                status: "success",
+                position: "bottom-right",
+                title: userName,
+                description: "Account created successfully",
               });
             }}
             isDisabled={!isAllFieldsFilled}
