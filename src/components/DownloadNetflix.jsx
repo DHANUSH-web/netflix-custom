@@ -14,6 +14,7 @@ const AppDownloadCard = ({ ...props }) => {
   return (
     <Center>
       <HStack
+        justify="center"
         mt={5}
         id="container"
         divider={<StackDivider />}

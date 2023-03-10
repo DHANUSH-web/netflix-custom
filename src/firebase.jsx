@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAHNJ4669Y93GRPbGUblaaMjJManlqbVUg",
@@ -9,6 +9,3 @@ const firebaseConfig = {
   appId: "1:189571339725:web:7d3379858db8e946816084",
   databaseURL: "https://netflix-clone-1d0e5-default-rtdb.firebaseio.com/"
 };
-
-const firebaseApp = initializeApp(firebaseConfig);
-export default firebaseApp;

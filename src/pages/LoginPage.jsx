@@ -7,44 +7,33 @@ import {
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
-  Divider,
   Button,
   Text,
   useToast,
   Checkbox,
-  Alert,
+  HStack,
 } from "@chakra-ui/react";
 import data from "../resources/data.json";
 import { Link } from "react-router-dom";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { motion } from "framer-motion";
+import { MdInfo, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { SiNetflix } from "react-icons/si";
 import React from "react";
 import "./LoginPage.css";
 
 const LoginPage = () => {
-  // toast message
   const toast = useToast();
 
-  // Handle password visibility
   const [show, setShow] = React.useState(false);
+  const [email, setInput] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const handlePassword = () => setShow(!show);
-
-  // Handle email Input
-  const [email, setInput] = React.useState('');
   const handleEmailInput = (e) => setInput(e.target.value);
-  const isEmailEmpty = email === "";
-
-  // Handle password input
-  const [password, setPassword] = React.useState('');
   const handlePasswordInput = (e) => setPassword(e.target.value);
-  const isPasswordEmpty = password === '';
-
-  const showAlert = () => {
-    toast({
-      status: "success",
-      title: "We remember you",
-    })
-  }
+  const isEmailFilled = email !== '';
+  const isPasswordFilled = password !== '';
+  const isAllFieldsFilled = isPasswordFilled && isEmailFilled;
 
   return (
     <Center h="100vh">
@@ -60,7 +49,12 @@ const LoginPage = () => {
         <VStack w={320} spacing={7} padding={5}>
           <InputGroup>
             <InputLeftAddon bg="teal" children={<SiNetflix />} />
-            <Input type="email" placeholder="Email or Phone number" isRequired onChange={handleEmailInput} />
+            <Input
+              type="email"
+              placeholder="Email or Phone number"
+              isRequired
+              onChange={handleEmailInput}
+            />
           </InputGroup>
           <InputGroup>
             <Input
@@ -74,21 +68,44 @@ const LoginPage = () => {
               bg="teal"
               onClick={handlePassword}
               cursor="pointer"
-              children={show ? <MdVisibilityOff /> : <MdVisibility/>}
+              children={show ? <MdVisibilityOff /> : <MdVisibility />}
             />
           </InputGroup>
-          <Checkbox alignSelf="flex-start" colorScheme="teal">Remember me</Checkbox>
+          <HStack alignSelf="flex-start">
+            <Checkbox
+              as={motion.div}
+              whileTap={{ scale: 1 }}
+              whileHover={{ scale: 1.2 }}
+              colorScheme="teal"
+            />
+            <Text>Remeber Me</Text>
+          </HStack>
           <Button
             w="full"
+            as={motion.button}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.8 }}
             colorScheme="twitter"
             onClick={() => {
               toast({
-                status: "info",
-                title: "Message",
-                description: `Email: ${email}, Password: ${password}`,
-              })
+                isClosable: true,
+                render: () => (
+                  <Box
+                    p={5}
+                    bg="#00bcfc55"
+                    backdropFilter="blur(10px)"
+                    borderRadius={7}
+                    transitionDuration={0.2}
+                    as={motion.div}
+                    whileDrag={{ scale: 1 }}
+                    whileHover={{ scale: 1.2 }}
+                  >
+                    <Text color="white">Animation Time</Text>
+                  </Box>
+                ),
+              });
             }}
-            isDisabled={isEmailEmpty || isPasswordEmpty}
+            isDisabled={!isAllFieldsFilled}
           >
             Login
           </Button>
@@ -96,7 +113,9 @@ const LoginPage = () => {
           <Box>
             <Text>
               Don't have an account ?{" "}
-              <Link to="/register" className="register-hyper">Register</Link>
+              <Link to="/register" className="register-hyper">
+                Register
+              </Link>
             </Text>
           </Box>
         </VStack>
