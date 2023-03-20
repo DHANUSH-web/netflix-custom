@@ -1,40 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { ChakraProvider } from "@chakra-ui/react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import { BrowserRouter, Route, Routes  } from "react-router-dom";
 import PageNotFoundPage from "./pages/PageNotFound";
-import App from "./App";
+import { ChakraProvider } from "@chakra-ui/react";
 import RegisterPage from "./pages/RegisterPage";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/home",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />
-  },
-  {
-    path: "*",
-    element: <PageNotFoundPage />,
-  },
-]);
+import LoginPage from "./pages/LoginPage";
+import ReactDOM from "react-dom/client";
+import React from "react";
+import App from "./App";
+import ChatGPT from "./components/ChatGPT";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/chat" element={ <ChatGPT /> }/>
+          <Route path="*" element={<PageNotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>
 );

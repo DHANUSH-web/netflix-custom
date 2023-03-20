@@ -16,10 +16,11 @@ import {
 import data from "../resources/data.json";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MdInfo, MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { SiNetflix } from "react-icons/si";
 import React from "react";
 import "./LoginPage.css";
+import { pullDataBase, pushDataBase } from "../database";
 
 const LoginPage = () => {
   const toast = useToast();
@@ -31,8 +32,9 @@ const LoginPage = () => {
   const handlePassword = () => setShow(!show);
   const handleEmailInput = (e) => setInput(e.target.value);
   const handlePasswordInput = (e) => setPassword(e.target.value);
-  const isEmailFilled = email !== '';
-  const isPasswordFilled = password !== '';
+
+  const isEmailFilled = email !== "";
+  const isPasswordFilled = password !== "";
   const isAllFieldsFilled = isPasswordFilled && isEmailFilled;
 
   return (
@@ -85,25 +87,20 @@ const LoginPage = () => {
             as={motion.button}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.8 }}
-            colorScheme="twitter"
+            colorScheme="messenger"
+            variant="solid"
             onClick={() => {
-              toast({
-                isClosable: true,
-                render: () => (
-                  <Box
-                    p={5}
-                    bg="#00bcfc55"
-                    backdropFilter="blur(10px)"
-                    borderRadius={7}
-                    transitionDuration={0.2}
-                    as={motion.div}
-                    whileDrag={{ scale: 1 }}
-                    whileHover={{ scale: 1.2 }}
-                  >
-                    <Text color="white">Animation Time</Text>
-                  </Box>
-                ),
-              });
+              let username = email.split("@")[0];
+              let db = pullDataBase({ root: "accounts"});
+
+              if (username in db) {
+                if (db[username].password === password)
+                  toast({ status: "success", title: "Success", description: "Login Successful" })
+                else
+                  toast({ status: "error", title: 'Incorrect password', description: "Please enter the correct password" })
+              }
+              else
+                toast({ status: "error", title: "SignUp", description: "You don't have an account.. please create a Netflix account"});
             }}
             isDisabled={!isAllFieldsFilled}
           >
